@@ -3,7 +3,7 @@ const db = require('../config/db');
 const Participants = {
   create: async ({ name, email, phone, area, company, gst, business_category, qr_code }) => {
     const sql = `INSERT INTO participants (name, email, phone, area, company, gst, business_category, qr_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
-    const [res] = await db.execute(sql, [name, email, phone, area || null, company || null, gst || null, business_category || null, qr_code]);
+    const [res] = await db.execute(sql, [name, email, phone, area || null, company || null, gst || '-', business_category || null, qr_code]);
     return { id: res.insertId };
   },
   ensureActivitiesRow: async (participant_id) => {
